@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Anchor = styled.a`
   display: flex;
-  flex-direction: center;
+  flex-direction: column;
   text-align: center;
   text-decoration: none;
   width: 75px;
