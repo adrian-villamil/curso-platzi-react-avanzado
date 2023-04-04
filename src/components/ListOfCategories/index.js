@@ -1,24 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Category } from "../Category";
 import { Item, List } from "./styles";
-import axios from "axios";
+import { useCategoriesData } from "../../hooks/useCategoriesData";
 
 export const ListOfCategories = () => {
-  const [categories, setCategories] = useState([]);
+  const { categories, loading } = useCategoriesData();
   const [showFixed, setShowFixed] = useState(false);
-
-  useEffect(() => {
-    async function getCategories() {
-      try {
-        const response = await axios.get('https://petgram-server-edsf8xpy2.now.sh/categories');
-        setCategories(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-
-    getCategories();
-  }, []);
 
   useEffect(() => {
     const onScroll = (event) => {
@@ -31,9 +18,11 @@ export const ListOfCategories = () => {
   }, [showFixed]);
 
   const renderList = (fixed) => (
-    <List className={fixed ? 'fixed' : ''}>
+    <List fixed={fixed}>
       {
-        categories.map(category => (
+        loading
+        ? <Item><Category /></Item>
+        : categories.map(category => (
           <Item key={category.id}>
             <Category {...category} />
           </Item>
