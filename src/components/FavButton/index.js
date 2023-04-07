@@ -18,7 +18,7 @@ export const FavButton = ({ id, liked, likes, setLiked }) => {
   const Icon = liked ? MdFavorite : MdFavoriteBorder;
 
   const handleLike = () => {
-    likeAnonymousPhoto({ variables: { input: { id: id } }});
+    likeAnonymousPhoto({ variables: { input: { id: id } } });
     setLiked(!liked);
   };
 
