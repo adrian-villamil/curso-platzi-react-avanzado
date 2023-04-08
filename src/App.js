@@ -4,6 +4,7 @@ import { GlobalStyles } from "./styles/GlobalStyles";
 import { Home } from "./pages/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Detail } from "./pages/Detail";
+import { NavBar } from "./components/NavBar";
 
 export const App = () => {
 
@@ -17,6 +18,7 @@ export const App = () => {
           <Route path="/pet/:categoryId" element={<Home />} />
           <Route path="/detail/:detailId" element={<Detail />} />
         </Routes>
+        <NavBar />
       </BrowserRouter>
     </>
   );
