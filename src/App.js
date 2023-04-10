@@ -7,9 +7,7 @@ import { Detail } from "./pages/Detail";
 import { NavBar } from "./components/NavBar";
 import { Favs } from "./pages/Favs";
 import { User } from "./pages/User";
-import { NoRegisteredUser } from "./pages/NoRegisteredUser";
-
-const isLogged = true;
+import { ProtectedRoute } from "./container/ProtectedRoute";
 
 export const App = () => {
 
@@ -22,8 +20,22 @@ export const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/pet/:categoryId" element={<Home />} />
           <Route path="/detail/:detailId" element={<Detail />} />
-          <Route path="/favs" element={isLogged ? <Favs /> : <NoRegisteredUser /> } />
-          <Route path="/user" element={isLogged ? <User /> : <NoRegisteredUser /> } />
+          <Route
+            path="/favs"
+            element={
+              <ProtectedRoute>
+                <Favs />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/user"
+            element={
+              <ProtectedRoute>
+                <User />
+              </ProtectedRoute>
+            }
+          />
           <Route path="*" element={<p>There is nothing here: 404!</p>} />
         </Routes>
         <NavBar />
