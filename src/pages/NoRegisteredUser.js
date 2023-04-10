@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "../context/AppContext";
 
 export const NoRegisteredUser = () => {
+  const { activateAuth } = useContext(AppContext);
+
   return (
-    <h1>NoRegisteredUser</h1>
+    <form onSubmit={activateAuth}>
+      <label htmlFor="">Iniciar sesión</label>
+      <input type="submit" value='Iniciar Sesión' />
+    </form>
   );
 };
