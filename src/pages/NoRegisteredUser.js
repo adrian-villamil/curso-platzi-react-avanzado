@@ -6,6 +6,9 @@ export const NoRegisteredUser = () => {
   const { activateAuth } = useContext(AppContext);
 
   return (
-    <UserForm onSubmit={activateAuth} />
+    <>
+      <UserForm onSubmit={activateAuth} title={'Registrarse'} />
+      <UserForm onSubmit={activateAuth} title={'Iniciar Sesión'} />
+    </>
   );
 };
