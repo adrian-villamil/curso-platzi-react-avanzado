@@ -1,25 +1,18 @@
 import React from "react";
 import { useInputs } from "../../hooks/useInputs";
-import { Button, Form, Input, Title } from "./styles";
-import { gql, useMutation } from "@apollo/client";
+import { Alert, Button, Form, Input, Title } from "./styles";
+import { useMutation } from "@apollo/client";
 
-const REGISTER = gql`
-  mutation signup($input: UserCredentials!) {
-    signup(input: $input)
-  }
-`;
-
-export const UserForm = ({ onSubmit, title }) => {
-  const [registerUser, { data, loading, error }] = useMutation(REGISTER);
+export const UserForm = ({ onSubmit, title, queryMutation }) => {
+  const [mutationFunction, { data, loading, error }] = useMutation(queryMutation);
   const email = useInputs('');
   const password = useInputs('');
 
   if (loading) return <p>Submitting...</p>;
-  if (error) return <p>Submission error: {error.message}</p>
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    registerUser({
+    mutationFunction({
       variables: {
         input: {
           email: email.value,
@@ -45,6 +38,7 @@ export const UserForm = ({ onSubmit, title }) => {
         />
         <Button type="submit">{title}</Button>
       </Form>
+      {!!error && <Alert>Submission error: {error.message}</Alert>}
     </>
   );
 };
