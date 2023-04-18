@@ -28,3 +28,7 @@ export const Title = styled.h2`
   font-weight: 500;
   padding: 8px 0;
 `;
+
+export const Alert = styled.span`
+  color: red;
+`;
