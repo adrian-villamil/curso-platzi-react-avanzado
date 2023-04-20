@@ -18,10 +18,38 @@ export const NoRegisteredUser = () => {
     }
   `;
 
+  const submitRegister = (email, password, mutationFunction) => {
+    mutationFunction({
+      variables: {
+        input: {
+          email: email.value,
+          password: password.value
+        }
+      }
+    }).then((response) => {
+      const { signup } = response.data;
+      activateAuth(signup);
+    });
+  };
+
+  const submitLogin = (email, password, mutationFunction) => {
+    mutationFunction({
+      variables: {
+        input: {
+          email: email.value,
+          password: password.value
+        }
+      }
+    }).then((response) => {
+      const { login } = response.data;
+      activateAuth(login);
+    });
+  };
+
   return (
     <>
-      <UserForm onSubmit={activateAuth} title={'Registrarse'} queryMutation={REGISTER} />
-      <UserForm onSubmit={activateAuth} title={'Iniciar Sesión'} queryMutation={LOGIN} />
+      <UserForm onSubmit={submitRegister} title={'Registrarse'} queryMutation={REGISTER} />
+      <UserForm onSubmit={submitLogin} title={'Iniciar Sesión'} queryMutation={LOGIN} />
     </>
   );
 };
