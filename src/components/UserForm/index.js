@@ -12,14 +12,7 @@ export const UserForm = ({ onSubmit, title, queryMutation }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    mutationFunction({
-      variables: {
-        input: {
-          email: email.value,
-          password: password.value
-        }
-      }
-    }).then(onSubmit);
+    onSubmit(email, password, mutationFunction);
   };
 
   return (
