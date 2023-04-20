@@ -4,8 +4,8 @@ import { Button } from "./styles";
 import { gql, useMutation } from "@apollo/client";
 
 const LIKE_PHOTO = gql`
-  mutation LikeAnonymousPhoto($input: LikePhoto!) {
-    likeAnonymousPhoto(input: $input) {
+  mutation LikePhoto($input: LikePhoto!) {
+    likePhoto(input: $input) {
       id,
       liked,
       likes
@@ -13,13 +13,12 @@ const LIKE_PHOTO = gql`
   }
 `;
 
-export const FavButton = ({ id, liked, likes, setLiked }) => {
+export const FavButton = ({ id, liked, likes }) => {
   const [likeAnonymousPhoto, { data, loading, error }] = useMutation(LIKE_PHOTO);
   const Icon = liked ? MdFavorite : MdFavoriteBorder;
 
   const handleLike = () => {
     likeAnonymousPhoto({ variables: { input: { id: id } } });
-    setLiked(!liked);
   };
 
   if (loading) return 'Submitting...';
