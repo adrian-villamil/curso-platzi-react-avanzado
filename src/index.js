@@ -11,7 +11,7 @@ const httpLink = createHttpLink({
 
 const authLink = setContext((_, { headers }) => {
   const token = window.sessionStorage.getItem('token');
-  
+
   return {
     headers: {
       ...headers,
@@ -27,9 +27,9 @@ const client = new ApolloClient({
 
 const root = ReactDOM.createRoot(document.getElementById('app'));
 root.render(
-  <AppProvider>
-    <ApolloProvider client={client}>
+  <ApolloProvider client={client}>
+    <AppProvider>
       <App />
-    </ApolloProvider>
-  </AppProvider>
+    </AppProvider>
+  </ApolloProvider>
 );
