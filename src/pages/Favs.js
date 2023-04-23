@@ -1,6 +1,7 @@
 import React from "react";
 import { ListOfFavs } from "../components/ListOfFavs";
 import { gql, useQuery } from "@apollo/client";
+import { Layout } from "../components/Layout";
 
 const GET_FAVS = gql`
   query GetFavs {
@@ -23,8 +24,11 @@ export const Favs = () => {
   if (error) return <p>Error: {error.message}</p>
 
   return (
-    <>
+    <Layout
+      title={'Petgram - Tus favoritos'}
+      subtitle={'Aquí puedes encontrar tus favoritos'}
+    >
       <ListOfFavs favs={data.favs} />
-    </>
+    </Layout>
   );
 };
