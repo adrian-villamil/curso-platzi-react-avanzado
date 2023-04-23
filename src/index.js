@@ -4,6 +4,7 @@ import { App } from "./App";
 import { ApolloClient, ApolloProvider, InMemoryCache, createHttpLink } from "@apollo/client";
 import { AppProvider } from "./context/AppContext";
 import { setContext } from '@apollo/client/link/context';
+import { HelmetProvider } from "react-helmet-async";
 
 const httpLink = createHttpLink({
   uri: 'https://petgram-server-edsf8xpy2.now.sh/graphql',
@@ -27,9 +28,11 @@ const client = new ApolloClient({
 
 const root = ReactDOM.createRoot(document.getElementById('app'));
 root.render(
-  <ApolloProvider client={client}>
-    <AppProvider>
-      <App />
-    </AppProvider>
-  </ApolloProvider>
+  <HelmetProvider>
+    <ApolloProvider client={client}>
+      <AppProvider>
+        <App />
+      </AppProvider>
+    </ApolloProvider>
+  </HelmetProvider>
 );
