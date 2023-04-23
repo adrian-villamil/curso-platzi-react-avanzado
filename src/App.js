@@ -8,6 +8,7 @@ import { NavBar } from "./components/NavBar";
 import { Favs } from "./pages/Favs";
 import { User } from "./pages/User";
 import { ProtectedRoute } from "./container/ProtectedRoute";
+import { NotFound } from "./pages/NotFound";
 
 export const App = () => {
 
@@ -36,7 +37,7 @@ export const App = () => {
               </ProtectedRoute>
             }
           />
-          <Route path="*" element={<p>There is nothing here: 404!</p>} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <NavBar />
       </BrowserRouter>
