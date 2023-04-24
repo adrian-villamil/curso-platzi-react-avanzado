@@ -1,19 +1,20 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { Logo } from "./components/Logo";
 import { GlobalStyles } from "./styles/GlobalStyles";
 import { Home } from "./pages/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Detail } from "./pages/Detail";
 import { NavBar } from "./components/NavBar";
-import { Favs } from "./pages/Favs";
 import { User } from "./pages/User";
 import { ProtectedRoute } from "./container/ProtectedRoute";
 import { NotFound } from "./pages/NotFound";
 
+const Favs = lazy(() => import('./pages/Favs.js'));
+
 export const App = () => {
 
   return (
-    <>
+    <Suspense fallback={<p>Loading...</p>}>
       <BrowserRouter>
         <GlobalStyles />
         <Logo />
@@ -41,6 +42,6 @@ export const App = () => {
         </Routes>
         <NavBar />
       </BrowserRouter>
-    </>
+    </Suspense>
   );
 };

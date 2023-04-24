@@ -15,7 +15,7 @@ const GET_FAVS = gql`
   }
 `;
 
-export const Favs = () => {
+export default () => {
   const { loading, error, data } = useQuery(GET_FAVS, {
     fetchPolicy: 'cache-and-network',
   });
