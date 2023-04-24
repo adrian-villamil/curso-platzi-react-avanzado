@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "vercel-build": "npm run build",
-    "build": "webpack",
+    "build": "webpack --mode production",
+    "predeploy": "npm run build",
     "lint": "standard",
-    "dev": "webpack serve",
+    "start": "webpack serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
