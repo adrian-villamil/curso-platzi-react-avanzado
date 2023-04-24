@@ -2,6 +2,7 @@ import React from "react";
 import { MdFavoriteBorder, MdFavorite } from 'react-icons/md';
 import { Button } from "./styles";
 import { gql, useMutation } from "@apollo/client";
+import PropTypes from 'prop-types';
 
 const LIKE_PHOTO = gql`
   mutation LikePhoto($input: LikePhoto!) {
@@ -14,11 +15,11 @@ const LIKE_PHOTO = gql`
 `;
 
 export const FavButton = ({ id, liked, likes }) => {
-  const [likeAnonymousPhoto, { data, loading, error }] = useMutation(LIKE_PHOTO);
+  const [likePhoto, { data, loading, error }] = useMutation(LIKE_PHOTO);
   const Icon = liked ? MdFavorite : MdFavoriteBorder;
 
   const handleLike = () => {
-    likeAnonymousPhoto({ variables: { input: { id: id } } });
+    likePhoto({ variables: { input: { id: id } } });
   };
 
   if (loading) return 'Submitting...';
@@ -29,4 +30,10 @@ export const FavButton = ({ id, liked, likes }) => {
       <Icon size={32} />{likes} likes!
     </Button>
   );
+};
+
+FavButton.propTypes = {
+  id: PropTypes.string.isRequired,
+  liked: PropTypes.bool.isRequired,
+  likes: PropTypes.number.isRequired,
 };
