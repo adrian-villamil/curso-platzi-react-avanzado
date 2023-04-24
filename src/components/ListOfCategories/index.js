@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { Category } from "../Category";
 import { Item, List } from "./styles";
 import { useCategoriesData } from "../../hooks/useCategoriesData";
 
-export const ListOfCategories = () => {
+const ListOfCategoriesComponent = () => {
   const { categories, loading } = useCategoriesData();
   const [showFixed, setShowFixed] = useState(false);
 
@@ -38,3 +38,5 @@ export const ListOfCategories = () => {
     </>
   );
 };
+
+export const ListOfCategories = memo(ListOfCategoriesComponent);
