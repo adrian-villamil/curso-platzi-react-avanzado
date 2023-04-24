@@ -1,4 +1,5 @@
 import React from "react";
+import { Helmet } from "react-helmet-async";
 import { FaDog } from 'react-icons/fa';
 import styled from "styled-components";
 
@@ -59,12 +60,18 @@ const Title = styled.h3`
 
 export const NotFound = () => {
   return (
-    <NotFoundWrapper>
-      <IconWrapper>
-        <DogIcon />
-        <Icon404>404</Icon404>
-      </IconWrapper>
-      <Title>There is nothing here: Page Not Found!</Title>
-    </NotFoundWrapper>
+    <>
+      <Helmet>
+        <title>Petgram - 404 Not Found</title>
+        <meta name="description" content="Página de Not Found 404" />
+      </Helmet>
+      <NotFoundWrapper>
+        <IconWrapper>
+          <DogIcon />
+          <Icon404>404</Icon404>
+        </IconWrapper>
+        <Title>There is nothing here: Page Not Found!</Title>
+      </NotFoundWrapper>
+    </>
   );
 };

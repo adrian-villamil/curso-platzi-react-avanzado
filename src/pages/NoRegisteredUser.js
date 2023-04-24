@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 import { UserForm } from "../components/UserForm";
 import { gql } from "@apollo/client";
+import { Helmet } from "react-helmet-async";
 
 export const NoRegisteredUser = () => {
   const { activateAuth } = useContext(AppContext);
@@ -48,6 +49,10 @@ export const NoRegisteredUser = () => {
 
   return (
     <>
+      <Helmet>
+        <title>Petgram - sign in or sign up</title>
+        <meta name="description" content="Página de iniciar sesión o registro" />
+      </Helmet>
       <UserForm onSubmit={submitRegister} title={'Registrarse'} queryMutation={REGISTER} />
       <UserForm onSubmit={submitLogin} title={'Iniciar Sesión'} queryMutation={LOGIN} />
     </>
