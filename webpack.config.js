@@ -40,7 +40,7 @@ module.exports = {
           }
         },
         {
-          urlPattern: new RegExp('https://petgram-server-edsf8xpy2.now.sh'),
+          urlPattern: new RegExp('https://petgram-adrian-villamil-adrianvillaloco-gmailcom.vercel.app/'),
           handler: 'NetworkFirst',
           options: {
             cacheName: 'api'
